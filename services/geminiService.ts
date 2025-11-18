@@ -4,11 +4,8 @@ import { GoogleGenAI, Modality } from "@google/genai";
 const PROMPT = `Transform the uploaded image into a speculative black and white line drawing. The style should be minimal, conceptual, and thought-provoking. Emphasize abstract forms and ideas inspired by the original image, rather than a literal depiction. The output should be a single, clean line drawing on a white background. Do not include any text or annotations.`;
 
 export const generateSpeculativeDrawing = async (base64ImageData: string, mimeType: string): Promise<string> => {
-  // Use a hardcoded API key for demonstration purposes,
-  // as process.env.API_KEY is not available in the browser.
-  // In a real application, this should be handled via a backend proxy.
   if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable not set");
+    throw new Error("GEMINI_API_KEY environment variable not set. Please create a .env file based on .env.example and add your API key.");
   }
 
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
